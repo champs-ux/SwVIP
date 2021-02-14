@@ -10,6 +10,7 @@ import br.com.snowdev.swvip.commands.MainCommand;
 
 public class SwVIP extends JavaPlugin {
 	public YamlConfiguration ResourceMessage;
+	public YamlConfiguration ResourceKeys;
 	
 	public static Boolean flatFile = true;
 	public static SwVIP instance;
@@ -20,6 +21,7 @@ public class SwVIP extends JavaPlugin {
 		if(!new File(getDataFolder(), "config.yml").exists()) saveDefaultConfig();
 		
 		this.loadMessages();
+		this.loadKeys();
 		
 		MainCommand MainCommand = new MainCommand();
 		
@@ -57,5 +59,11 @@ public class SwVIP extends JavaPlugin {
     	if(!resourceMessage.exists()) saveResource("messages.yml", false);
     	
     	this.ResourceMessage = YamlConfiguration.loadConfiguration(resourceMessage);
+    }
+	
+    private void loadKeys() {
+	File resourceKeys = new file(getDataFolder(), "keys.yml");
+	if(!resourceKeys.exists()) saveResource("keys.yml", false);
+	this.ResourceKeys = YamlConfiguration.loadConfiguration(resourceKeys);
     }
 }
